@@ -1,0 +1,38 @@
+Step 1: download the necessary software::
+        https://spark.apache.org/downloads.html
+	https://github.com/cdarlint/winutils
+	jdk 8 download for windows (jdk-8u202-windows-x64.exe)
+Step 2: install java, unzip spark and copy paste to c-drive, copy winutils.exe to (C:\spark-3.0.3-bin-hadoop2.7\bin)
+
+Step 3: Open (Edit the system with environment variables)-> Environment Variables-> in system variables-> click new-> variable name= HADOOP_HOME, SPARK_HOME, JAVA_HOME and variable value= paste the path location (example= SPARK_HOME   C:\spark-3.0.3-bin-hadoop2.7; HADOOP_HOME  C:\spark-3.0.3-bin-hadoop2.7; JAVA_HOME    C:\Program Files\Java\jdk-17.0.1)
+
+Step 4: Go to (User variables for abhis)-> click Path or Edit Path and paste path( example= C:\spark-3.0.3-bin-hadoop2.7\bin, C:\Program Files\Java\jdk-17.0.1\bin) ->ok->ok ->ok
+
+Step 5: open anaconda prompt-> type java -version and enter, pyspark
+
+Step 6: type=> nums = sc.parallelize([1,2,3,4])
+Step 7:        nums.map(lambda x: x*x).collect()
+Step 8:        exit()
+Step 9: install this package(conda install -c conda-forge findspark)
+-----------------------------------------------------------------
+Step 10: In jupyter notebook: write=>
+#Testing pyspark installation
+import findspark
+findspark.init()
+findspark.find()
+import pyspark
+findspark.find()
+
+#Initiate Spark Context
+from pyspark import SparkContext, SparkConf
+from pyspark.sql import SparkSession
+conf = pyspark.SparkConf().setAppName('appName').setMaster('local')
+sc = pyspark.SparkContext(conf=conf)
+spark = SparkSession(sc)
+
+#Example Test Code
+nums = sc.parallelize([1,2,3,4])
+nums.map(lambda x: x*x).collect()
+
+#Stop the session
+sc.stop()
